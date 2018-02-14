@@ -131,7 +131,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                             Not a member?
                         </span>
 
-                        <a class="txt1 bo1 hov1" href="index.php">
+                        <a class="txt1 bo1 hov1" href="signup.php">
                             Sign up now                          
                         </a>
                     </div>

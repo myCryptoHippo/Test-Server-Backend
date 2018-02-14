@@ -21,7 +21,8 @@ else { // User exists
         // This is how we'll know the user is logged in
         $_SESSION['logged_in'] = true;
 
-        header("location: profile.php");
+        header("location: dashboard/examples/dashboard.php");
+        exit;
     }
     else {
         $_SESSION['message'] = "You have entered the wrong password, try again!";
