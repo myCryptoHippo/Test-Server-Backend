@@ -13,6 +13,8 @@ else {
     $email = $_SESSION['email'];
     $active = $_SESSION['active'];
 }
+require '../../net_worth.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -82,7 +84,7 @@ else {
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#pablo">
+                                <a class="nav-link" href="../../logout.php">
                                     <span class="no-icon">Log out</span>
                                 </a>
                             </li>
@@ -101,7 +103,7 @@ else {
                                     <p style="line-height:30px" class="card-category">Here's your profile's update.</p>
                                 </div>
                                 <div class="card-body ">
-                                    <h4 style="line-height:5px">You have $10,000 virtual dollars to spend on cryptocurrency!</h4>
+                                    <h4 style="line-height:5px">You have $<?php echo $usd?> virtual dollars to spend on cryptocurrency!</h4>
                                     <h4 style="line-height:5px">What're you waiting for? Get to trading!</h4>
                                     <button class = "btn btn-primary" style="margin-top: 10px">Trade now!</button>
 
@@ -116,7 +118,7 @@ else {
                         <div class="col-md-4">
                             <div class="card ">
                                 <div class="card-header ">
-                                    <h4 class="card-title">Your Net Worth</h4>
+                                    <h4 class="card-title">Your Net Worth: $<?php echo round($net,2)?></h4>
                                     <p class="card-category">Last Portfolio Update</p>
                                 </div>
                                 <div class="card-body ">
@@ -235,6 +237,61 @@ else {
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-8">
+                            <div class="card ">
+                                <div class="card-header ">
+                                    <h4 class="card-title">Leaderboard</h4>
+                                    <p class="card-category">Performance in last 24 hours</p>
+                                </div>
+
+                <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card strpied-tabled-with-hover">
+                                <div class="card-body table-full-width table-responsive">
+                                    <table class="table table-hover table-striped">
+                                        <thead>
+                                            <th>Rank</th>
+                                            <th>Username</th>
+                                            <th>Net worth (USD)</th>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td><?php echo $data[0][0]?></td>
+                                                <td><?php echo $data[0][1] ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td><?php echo $data[1][0] ?></td>
+                                                <td><?php echo $data[1][1] ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td><?php echo $data[2][0] ?></td>
+                                                <td><?php echo $data[2][1] ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td>4</td>
+                                                <td><?php echo $data[3][0] ?></td>
+                                                <td><?php echo $data[3][1] ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td>5</td>
+                                                <td><?php echo $data[4][0] ?></td>
+                                                <td><?php echo $data[4][1] ?></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                                 </div>
                             </div>
                         </div>

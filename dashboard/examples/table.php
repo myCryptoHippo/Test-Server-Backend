@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                         </a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="./table.html">
+                        <a class="nav-link" href="./table.php">
                             <i class="nc-icon nc-notes"></i>
                             <p>My Portfolio</p>
                         </a>
@@ -118,6 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                                 <div class="card-header ">
                                     <h4 class="card-title">Buy/Sell Coins</h4>
                                     <p class="card-category">The myCryptoHippo cryptocurrency exchange</p>
+
                                 </div>
                                 <div class="card-body table-full-width table-responsive">
                                     <table class="table table-hover table-striped">
@@ -137,7 +138,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                                                 <td>
                                                 <form action="table.php" method="post">
                                                         <input type="hidden" name="coin" value="BTC"/>
-                                                        <input type="hidden" name="value" id="price" value="10000"/>
+                                                        <input type="hidden" name="value" id="BTC_Price"/>
                                                         <div class="form-group"><input type="text" name="amount" class="form-control" placeholder="0.00"></div>
                                                         <button class="btn btn-success" type="submit" name="buy">Buy</button>
                                                         <button class="btn btn-danger" type="submit" name="sell">Sell</button>
@@ -151,13 +152,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                                                 <td id= "ETH_Change"></td>
                                                 <td>
                                                 <form action="table.php" method="post">
-                                                    <div class="row">
                                                         <input type="hidden" name="coin" value="ETH"/>
                                                         <input type="hidden" name="value" id="BTC_Price"/>
                                                         <div class="form-group"><input type="text" name="amount" class="form-control" placeholder="0.00 (USD)"></div>
                                                         <button class="btn btn-success" type="submit" name="buy">Buy</button>
                                                         <button class="btn btn-danger" type="submit" name="sell">Sell</button>
-                                                    </div>
                                                 </form>
                                                 </td>
                                             </tr>
@@ -168,13 +167,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                                                 <td id= "LTC_Change"></td>
                                                 <td>
                                                 <form action="table.php" method="post">
-                                                    <div class="row">
                                                         <input type="hidden" name="coin" value="LTC"/>
                                                         <input type="hidden" name="value" id="BTC_Price"/>
                                                         <div class="form-group"><input type="text" name="amount" class="form-control" placeholder="0.00 (USD)"></div>
                                                         <button class="btn btn-success" type="submit" name="buy">Buy</button>
                                                         <button class="btn btn-danger" type="submit" name="sell">Sell</button>
-                                                    </div>
                                                 </form>
                                                 </td>
                                             </tr>
@@ -185,13 +182,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                                                 <td id= "MIOTA_Change"></td>
                                                 <td>
                                                 <form action="table.php" method="post">
-                                                    <div class="row">
-                                                        <input type="hidden" name="coin" value="IOT"/>
+                                                        <input type="hidden" name="coin" value="MIOTA"/>
                                                         <input type="hidden" name="value" id="BTC_Price"/>
                                                         <div class="form-group"><input type="text" name="amount" class="form-control" placeholder="0.00 (USD)"></div>
                                                         <button class="btn btn-success" type="submit" name="buy">Buy</button>
                                                         <button class="btn btn-danger" type="submit" name="sell">Sell</button>
-                                                    </div>
                                                 </form>
                                                 </td>
                                             </tr>
@@ -202,13 +197,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                                                 <td id= "BCH_Change"></td>
                                                 <td>
                                                 <form action="table.php" method="post">
-                                                    <div class="row">
                                                         <input type="hidden" name="coin" value="BCH"/>
                                                         <input type="hidden" name="value" id="BTC_Price"/>
                                                         <div class="form-group"><input type="text" name="amount" class="form-control" placeholder="0.00 (USD)"></div>
                                                         <button class="btn btn-success" type="submit" name="buy">Buy</button>
                                                         <button class="btn btn-danger" type="submit" name="sell">Sell</button>
-                                                    </div>
                                                 </form>
                                                 </td>
                                             </tr>
@@ -219,13 +212,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                                                 <td id= "XRP_Change"></td>
                                                 <td>
                                                 <form action="table.php" method="post">
-                                                    <div class="row">
                                                         <input type="hidden" name="coin" value="XRP"/>
                                                         <input type="hidden" name="value" id="BTC_Price"/>
                                                         <div class="form-group"><input type="text" name="amount" class="form-control" placeholder="0.00 (USD)"></div>
                                                         <button class="btn btn-success" type="submit" name="buy">Buy</button>
                                                         <button class="btn btn-danger" type="submit" name="sell">Sell</button>
-                                                    </div>
                                                 </form>
                                                 </td>
                                             </tr>
@@ -236,13 +227,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                                                 <td id= "ADA_Change"></td>
                                                 <td>
                                                 <form action="table.php" method="post">
-                                                    <div class="row">
                                                         <input type="hidden" name="coin" value="ADA"/>
                                                         <input type="hidden" name="value" id="BTC_Price"/>
                                                         <div class="form-group"><input type="text" name="amount" class="form-control" placeholder="0.00 (USD)"></div>
                                                         <button class="btn btn-success" type="submit" name="buy">Buy</button>
                                                         <button class="btn btn-danger" type="submit" name="sell">Sell</button>
-                                                    </div>
                                                 </form>
                                                 </td>
                                             </tr>
@@ -253,13 +242,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                                                 <td id= "NEO_Change"></td>
                                                 <td>
                                                 <form action="table.php" method="post">
-                                                    <div class="row">
                                                         <input type="hidden" name="coin" value="NEO"/>
                                                         <input type="hidden" name="value" id="BTC_Price"/>
                                                         <div class="form-group"><input type="text" name="amount" class="form-control" placeholder="0.00 (USD)"></div>
                                                         <button class="btn btn-success" type="submit" name="buy">Buy</button>
                                                         <button class="btn btn-danger" type="submit" name="sell">Sell</button>
-                                                    </div>
                                                 </form>
                                                 </td>
                                             </tr>
@@ -270,13 +257,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                                                 <td id= "XLM_Change"></td>
                                                 <td>
                                                 <form action="table.php" method="post">
-                                                    <div class="row">
                                                         <input type="hidden" name="coin" value="XLM"/>
                                                         <input type="hidden" name="value" id="BTC_Price"/>
                                                         <div class="form-group"><input type="text" name="amount" class="form-control" placeholder="0.00 (USD)"></div>
                                                         <button class="btn btn-success" type="submit" name="buy">Buy</button>
                                                         <button class="btn btn-danger" type="submit" name="sell">Sell</button>
-                                                    </div>
                                                 </form>
                                                 </td>
                                             </tr>
@@ -287,13 +272,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                                                 <td id= "EOS_Change"></td>
                                                 <td>
                                                 <form action="table.php" method="post">
-                                                    <div class="row">
                                                         <input type="hidden" name="coin" value="EOS"/>
                                                         <input type="hidden" name="value" id="BTC_Price"/>
                                                         <div class="form-group"><input type="text" name="amount" class="form-control" placeholder="0.00 (USD)"></div>
                                                         <button class="btn btn-success" type="submit" name="buy">Buy</button>
                                                         <button class="btn btn-danger" type="submit" name="sell">Sell</button>
-                                                    </div>
                                                 </form>
                                                 </td>
                                             </tr>

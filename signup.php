@@ -85,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	<div class="limiter" id="signup">
 		<div class="container-login100">
 			<div class="wrap-login100 p-l-50 p-r-50 p-t-77 p-b-30">
-				<form class="login100-form validate-form" action="index.php" method="post">
+				<form class="login100-form validate-form" action="signup.php" method="post">
 					<span class="login100-form-title p-b-55">
 						Signup
 					</span>

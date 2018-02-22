@@ -2,65 +2,103 @@
 /* Registration process, inserts user info into the database 
    and sends account confirmation email message
  */
+require '../../db.php';
+session_start();
 
+if ( $_SESSION['logged_in'] != 1 ) {
+  header("location: ../../login.php");    
+}
 // Set session variables to be used on profile.php page
-$_SESSION['email'] = $_POST['email'];
-$_SESSION['username'] = $_POST['Username'];
-
-// Escape all $_POST variables to protect against SQL injections
-$username = $mysqli->escape_string($_POST['Username']);
-$email = $mysqli->escape_string($_POST['email']);
-$password = $mysqli->escape_string(password_hash($_POST['password'], PASSWORD_BCRYPT));
-$hash = $mysqli->escape_string( md5( rand(0,1000) ) );
-
-// Check if user with that email already exists
-$result = $mysqli->query("SELECT * FROM users WHERE email='$email'") or die($mysqli->error());
-
-// We know user email exists if the rows returned are more than 0
-if ( $result->num_rows > 0 ) {
-    
-    $_SESSION['message'] = 'User with this email already exists!';
-    header("location: error.php");
-    
-}
-else { // Email doesn't already exist in a database, proceed...
-
-    // active is 0 by DEFAULT (no need to include it here)
-    $sql = "INSERT INTO users (username, email, password, hash, USD, BTC, ETH, LTC, BCH, XRP, ADA, IOT) " 
-            . "VALUES ('$username','$email','$password', '$hash', 10000, 0, 0, 0, 0, 0, 0, 0)";
-
-    // Add user to the database
-    if ( $mysqli->query($sql) ){
-
-        $mysqli->query("UPDATE users SET active='1' WHERE email='$email'") or die($mysqli->error);
-        $_SESSION['active'] = 1;
-        $_SESSION['logged_in'] = true; // So we know the user has logged in
-        $_SESSION['message'] =
-                
-                 "Confirmation link has been sent to $email, please verify
-                 your account by clicking on the link in the message!";
-
-        // Send registration confirmation link (verify.php)
-        $to      = $email;
-        $subject = 'Account Verification ( clevertechie.com )';
-        $message_body = '
-        Hello '.$first_name.',
-
-        Thank you for signing up!
-
-        Please click this link to activate your account:
-
-        http://localhost/login-system/verify.php?email='.$email.'&hash='.$hash;  
-
-        mail( $to, $subject, $message_body );
-
-        header("location: profile.php"); 
-
-    }
-
-    else {
-        $_SESSION['message'] = 'Registration failed!';
-        header("location: error.php");
-    }
+else {
+    // Makes it easier to read
+    $id = $_SESSION['id'];
+    $username = $_SESSION['username'];
+    $email = $_SESSION['email'];
+    $active = $_SESSION['active'];
+    $result = $mysqli->query("SELECT * FROM users WHERE username='$username'");
+    $user = $result->fetch_assoc();
+    $_SESSION['USD'] = $user['USD'];
 
 }
+$decoded_json = json_decode(file_get_contents("https://api.coinmarketcap.com/v1/ticker/"), TRUE);
+
+$amount = $_POST['amount'];
+$coin = $_POST['coin'];
+
+function price($curr) {
+    global $decoded_json;
+    $js = array_column($decoded_json, 'price_usd', 'symbol');
+    return $js[$curr];
+}
+
+$value = price($coin);
+
+
+$_SESSION['BTC'] = $user['BTC'];
+$_SESSION['LTC'] = $user['LTC'];
+$_SESSION['ETH'] = $user['ETH'];
+$_SESSION['BCH'] = $user['BCH'];
+$_SESSION['XRP'] = $user['XRP'];
+$_SESSION['ADA'] = $user['ADA'];
+$_SESSION['IOT'] = $user['IOT'];
+
+$usd = $_SESSION['USD'];
+$btc = $_SESSION['BTC'];
+$ltc = $_SESSION['LTC'];
+$eth = $_SESSION['ETH'];
+$bch = $_SESSION['BCH'];
+$xrp = $_SESSION['XRP'];
+$ada = $_SESSION['ADA'];
+$iot = $_SESSION['IOT'];
+
+$balance = $usd + ($amount * $value);
+
+if ($coin == 'BTC')
+{
+    $newAmount = $btc - $amount;
+}
+if ($coin == 'ETH')
+{
+    $newAmount = $eth - $amount;
+}
+if ($coin == 'LTC')
+{
+    $newAmount = $ltc - $amount;
+}
+if ($coin == 'BCH')
+{
+    $newAmount = $bch - $amount;
+}
+if ($coin == 'XRP')
+{
+    $newAmount = $xrp - $amount;
+}
+if ($coin == 'ADA')
+{
+    $newAmount = $ada - $amount;
+}
+if ($coin == 'IOT')
+{
+    $newAmount = $iot - $amount;
+}
+
+
+if ($newAmount >= 0)
+{
+    $sql = "UPDATE users SET ".$coin." = '$newAmount', USD = '$balance' WHERE username='$username'";
+
+    if ( $mysqli->query($sql) ) {
+
+    $_SESSION['message'] = "Your balance has been updated successfully!";
+    header("location: ../../error.php");  
+    }  
+}
+else {
+    $_SESSION['message'] = "Your balance is too low to make that transaction!";
+    header("location: ../../error.php");    
+}
+
+
+
+?>
+
